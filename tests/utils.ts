@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import {expect, Locator, Page} from "@playwright/test";
 
 export const woffuURL = `${process.env.WOFFU_URL}/V2/login`;
 

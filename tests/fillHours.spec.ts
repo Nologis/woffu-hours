@@ -15,7 +15,7 @@ const passwordTextBox = { name: 'Introduce tu contraseña' };
 
 const buildSetup = (page: Page) => ({
     doLogin: async () => {
-        await page.goto(woffuURL);
+        await page.goto(`${woffuURL}/V2/login`);
         await page.getByPlaceholder(emailInput).click();
         await page.getByPlaceholder(emailInput).fill(process.env.EMAIL);
         await page.getByRole('button', nextButton).click();
@@ -28,7 +28,7 @@ const buildSetup = (page: Page) => ({
         ]);
     },
     doLoginWithGoogle: async () => {
-        await page.goto(woffuURL);
+        await page.goto(`${woffuURL}/V2/login`);
         await Promise.all([
             page.waitForNavigation(),
             page.getByRole('link', linkGoogle).click()
@@ -52,13 +52,16 @@ test('fill hours of previous month in Woffu', async ({ page }) => {
         const { doLogin } = buildSetup(page);
         await doLogin();
     }
+    console.info('🔐 Logged in');
     await goToReport(page);
 
-    for (let index = 1; index < parseInt(process.env.TOTAL_MONTH); index++) {
+    const totalMonth: number = parseInt(process.env.TOTAL_MONTH);
+    for (let index = 1; index < totalMonth; index++) {
         await page.frameLocator('#woffu-legacy-app').locator('text=< mes anterior').click();
     }
 
-    for (let index = 1; index <= parseInt(process.env.TOTAL_MONTH); index++) {
+    for (let index = 1; index <= totalMonth; index++) {
+        console.info(`Filling hours. (${index}/${totalMonth})`);
         await fillHours(page);
         await page.frameLocator('#woffu-legacy-app').locator('text=mes siguiente >').click();
     }
