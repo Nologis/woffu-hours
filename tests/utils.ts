@@ -71,16 +71,17 @@ export const fillHours = async (page: Page) => {
 
   let canFillCurrentDay = true;
   let totalDaysToFill = await countTotalDaysToFill(page);
-  while (totalDaysToFill > 1 && canFillCurrentDay) {
-    const dayToFill = await getDayToFill();
-    if (dayToFill) {
-      dayToFill.click();
-
-      const modifyButton = await getModifyButton();
-      await fillHours(modifyButton);
-      canFillCurrentDay = await hasErrorFillingFutureDays();
-    }
-
-    totalDaysToFill = await countTotalDaysToFill(page);
-  }
+  console.log('totalDaysToFill', totalDaysToFill);
+  // while (totalDaysToFill > 1 && canFillCurrentDay) {
+  //   const dayToFill = await getDayToFill();
+  //   if (dayToFill) {
+  //     dayToFill.click();
+  //
+      // const modifyButton = await getModifyButton();
+  //     await fillHours(modifyButton);
+  //     canFillCurrentDay = await hasErrorFillingFutureDays();
+  //   }
+  //
+  //   totalDaysToFill = await countTotalDaysToFill(page);
+  // }
 };

@@ -1,0 +1,17 @@
+name: Filled
+on: repository_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ACTIONS_TOKEN }}
+          fetch-depth: 0
+      - name: Config node
+        uses: actions/setup-node@v2
+      - name: Update NPMRC
+      - name: Install dependencies
+        run: make init
+      - name: Filled
+        run: ./.scripts/filled-action.sh "${{ github.event.client_payload.email }}" "${{ github.event.client_payload.password }}"
