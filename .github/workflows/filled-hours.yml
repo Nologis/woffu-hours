@@ -16,3 +16,9 @@ jobs:
           EMAIL: ${{ github.event.client_payload.email }}
           PASSWORD: ${{ github.event.client_payload.password }}
         run: ./.scripts/filled-action.sh
+      - uses: raulanatol/slack-message-github-action@v1.0.1
+        env:
+          WEBHOOK_URL: https://hooks.slack.com/services/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
+          SLACK_CHANNEL: varios
+          MESSAGE: ⏰ ${{github.event.client_payload.email}} thanks for update your hours!! ⏰
+          STATUS: ${{job.status}}
