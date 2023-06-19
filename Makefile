@@ -13,8 +13,8 @@ install: ## First installation
 	@echo "✅ Installation done!"
 
 init: ## Install dependencies
-	@npx playwright install
 	@npm i
+	@npx playwright install
 
 fill-hours: ## Fill hours with user and password auth in background
 	@echo "🚀 Starting to fill hours"
