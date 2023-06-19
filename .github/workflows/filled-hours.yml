@@ -6,11 +6,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           token: ${{ secrets.ACTIONS_TOKEN }}
-          fetch-depth: 0
       - name: Config node
         uses: actions/setup-node@v2
       - name: Install dependencies
