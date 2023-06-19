@@ -12,4 +12,7 @@ jobs:
       - name: Install dependencies
         run: make init
       - name: Filled
-        run: ./.scripts/filled-action.sh "${{ github.event.client_payload.email }}" "${{ github.event.client_payload.password }}"
+        env:
+          EMAIL: ${{ github.event.client_payload.email }}
+          PASSWORD: ${{ github.event.client_payload.password }}
+        run: ./.scripts/filled-action.sh

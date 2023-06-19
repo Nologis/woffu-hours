@@ -7,8 +7,8 @@ function error() {
   exit 1
 }
 
-EMAIL=$1
-PASSWORD=$2
+EMAIL="${EMAIL}"
+PASSWORD="${PASSWORD}"
 
 create_env_file() {
   filename=".env"
