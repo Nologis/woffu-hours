@@ -7,22 +7,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Config node
+        uses: actions/setup-node@v2
       - name: Install dependencies
         run: make init
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: https://hooks.slack.com/services/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
-          SLACK_CHANNEL: varios
-          SLACK_MESSAGE: ⏰ ${{github.event.client_payload.email}} Starting to fill the hours!! ⏰
+#      - uses: raulanatol/slack-message-github-action@v1.3.0
+#        env:
+#          WEBHOOK_URL: https://hooks.slack.com/services/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
+#          SLACK_CHANNEL: varios
+#          MESSAGE: ⏰ ${{github.event.client_payload.email}} Starting to fill the hours!! ⏰
       - name: Filled
         env:
           EMAIL: ${{ github.event.client_payload.email }}
           PASSWORD: ${{ github.event.client_payload.password }}
         run: ./.scripts/filled-action.sh
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: https://hooks.slack.com/services/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
-          SLACK_CHANNEL: varios
-          SLACK_MESSAGE: ⏰ ${{github.event.client_payload.email}} Thanks for filled the hours!! ⏰
+#      - uses: raulanatol/slack-message-github-action@v1.3.0
+#        env:
+#          WEBHOOK_URL: https://hooks.slack.com/services/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
+#          SLACK_CHANNEL: varios
+#          MESSAGE: ⏰ ${{github.event.client_payload.email}} thanks for update your hours!! ⏰
+#          STATUS: ${{job.status}}
