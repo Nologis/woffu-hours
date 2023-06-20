@@ -12,7 +12,7 @@ jobs:
       - name: Install dependencies
         run: make init
       - name: Starting message
-      - uses: Nologis/slack-message-github-action@v1.2.1
+        uses: Nologis/slack-message-github-action@v1.2.1
         env:
           WEBHOOK_URL: ${{secrets.SLACK_RELEASES_WEBHOOK_URL}}
           SLACK_CHANNEL: woffu
@@ -23,7 +23,7 @@ jobs:
 #          PASSWORD: ${{ github.event.client_payload.password }}
 #        run: ./.scripts/filled-action.sh
       - name: Finishing message
-      - uses: Nologis/slack-message-github-action@v1.2.1
+        uses: Nologis/slack-message-github-action@v1.2.1
         env:
           WEBHOOK_URL: ${{secrets.SLACK_RELEASES_WEBHOOK_URL}}
           SLACK_CHANNEL: woffu
