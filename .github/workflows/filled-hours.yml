@@ -12,19 +12,17 @@ jobs:
       - name: Install dependencies
         run: make init
       - name: Starting message
-        uses: Nologis/slack-message-github-action@v1.2.1
         env:
-          WEBHOOK_URL: ${{secrets.SLACK_RELEASES_WEBHOOK_URL}}
-          SLACK_CHANNEL: woffu
+          WEBHOOK_URL: ${{secrets.WOFFU_SLACK_WEBHOOK_URL}}
           MESSAGE: ⏰ ${{github.event.client_payload.email}} Starting to fill the hours!! ⏰
+        run: ./.scripts/test.sh
 #      - name: Filled
 #        env:
 #          EMAIL: ${{ github.event.client_payload.email }}
 #          PASSWORD: ${{ github.event.client_payload.password }}
 #        run: ./.scripts/filled-action.sh
       - name: Finishing message
-        uses: Nologis/slack-message-github-action@v1.2.1
         env:
-          WEBHOOK_URL: ${{secrets.SLACK_RELEASES_WEBHOOK_URL}}
-          SLACK_CHANNEL: woffu
+          WEBHOOK_URL: ${{secrets.WOFFU_SLACK_WEBHOOK_URL}}
           MESSAGE: ⏰ ${{github.event.client_payload.email}} thanks for update your hours!! ⏰
+        run: ./.scripts/test.sh
