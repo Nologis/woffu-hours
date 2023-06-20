@@ -13,7 +13,7 @@ jobs:
         run: make init
       - name: Starting message
         env:
-          WEBHOOK_URL: https://hooks.slack.com/services/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
+          WEBHOOK_URL: https://hooks.slack.com/services/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
           MESSAGE: ⏰ ${{github.event.client_payload.email}} Starting to fill the hours!! ⏰
         run: ./.scripts/test.sh start
 #      - name: Filled
@@ -23,6 +23,6 @@ jobs:
 #        run: ./.scripts/filled-action.sh
       - name: Finished message
         env:
-          WEBHOOK_URL: https://hooks.slack.com/services/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
+          WEBHOOK_URL: https://hooks.slack.com/services/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
           MESSAGE: ⏰ ${{github.event.client_payload.email}} thanks for update your hours!! ⏰
         run: ./.scripts/test.sh
