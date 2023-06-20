@@ -15,14 +15,14 @@ jobs:
         env:
           WEBHOOK_URL: ${{ secrets.WOFFU_SLACK_WEBHOOK_URL }}
           MESSAGE: ⏰ ${{ github.event.client_payload.email }} Starting to fill the hours!! ⏰
-        run: ./.scripts/test.sh start
-#      - name: Filled
-#        env:
-#          EMAIL: ${{ github.event.client_payload.email }}
-#          PASSWORD: ${{ github.event.client_payload.password }}
-#        run: ./.scripts/filled-action.sh
+        run: ./.scripts/slack-message.sh start
+      - name: Filled
+        env:
+          EMAIL: ${{ github.event.client_payload.email }}
+          PASSWORD: ${{ github.event.client_payload.password }}
+        run: ./.scripts/filled-action.sh
       - name: Finishing message
         env:
           WEBHOOK_URL: ${{ secrets.WOFFU_SLACK_WEBHOOK_URL }}
           MESSAGE: ⏰ ${{ github.event.client_payload.email }} thanks for update your hours!! ⏰
-        run: ./.scripts/test.sh
+        run: ./.scripts/slack-message.sh
