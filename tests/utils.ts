@@ -35,8 +35,8 @@ const woffuActions = (page: Page) => {
       await frameLocator.getByPlaceholder('14:00:00').fill('14:00');
       await frameLocator.getByPlaceholder('15:00:00').click();
       await frameLocator.getByPlaceholder('15:00:00').fill('15:00');
-      await frameLocator.getByText('18:00:00').click();
-      await frameLocator.getByText('18:00:00').fill('18:00');
+      await frameLocator.getByPlaceholder('18:00:00').click();
+      await frameLocator.getByPlaceholder('18:00:00').fill('18:00');
 
       await frameLocator.getByRole('button', acceptButton).click();
     },

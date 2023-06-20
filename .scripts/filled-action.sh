@@ -18,8 +18,6 @@ create_env_file() {
   echo "PASSWORD=$PASSWORD" >> "$filename"
   echo "HAS_GOOGLE_LOGIN=false" >> "$filename"
   echo "TOTAL_MONTH=1" >> "$filename"
-  echo "INI_HOUR=09:00" >> "$filename"
-  echo "END_HOUR=18:00" >> "$filename"
   echo "WOFFU_URL=https://nologis.woffu.com" >> "$filename"
 
   echo "Se ha creado el archivo $filename con éxito."
