@@ -70,8 +70,8 @@ export const fillHours = async (page: Page) => {
   } = woffuActions(page);
 
   let canFillCurrentDay = true;
-  // let totalDaysToFill = await countTotalDaysToFill(page);
-  // while (totalDaysToFill > 1 && canFillCurrentDay) {
+  let totalDaysToFill = await countTotalDaysToFill(page);
+  while (totalDaysToFill > 1 && canFillCurrentDay) {
     const dayToFill = await getDayToFill();
     if (dayToFill) {
       dayToFill.click();
@@ -81,6 +81,6 @@ export const fillHours = async (page: Page) => {
       canFillCurrentDay = await hasErrorFillingFutureDays();
     }
 
-    // totalDaysToFill = await countTotalDaysToFill(page);
-  // }
+    totalDaysToFill = await countTotalDaysToFill(page);
+  }
 };
