@@ -78,7 +78,7 @@ export const fillHours = async (page: Page) => {
 
       const modifyButton = await getModifyButton();
       await fillHours(modifyButton);
-      canFillCurrentDay = await hasErrorFillingFutureDays();
+      // canFillCurrentDay = await hasErrorFillingFutureDays();
     }
 
     totalDaysToFill = await countTotalDaysToFill(page);
