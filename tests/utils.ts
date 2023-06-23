@@ -72,6 +72,7 @@ export const fillHours = async (page: Page) => {
 
   let canFillCurrentDay = true;
   let totalDaysToFill = await countTotalDaysToFill(page);
+  console.log('daysToFill', totalDaysToFill);
   while (totalDaysToFill > 1 && canFillCurrentDay) {
     const dayToFill = await getDayToFill();
     if (dayToFill) {
@@ -83,6 +84,7 @@ export const fillHours = async (page: Page) => {
   }
 
   totalDaysToFill = await countTotalDaysToFill(page);
+    console.log('while conditions', totalDaysToFill, canFillCurrentDay);
   }
-  await close();
+  // await close();
 };
