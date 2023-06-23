@@ -46,7 +46,7 @@ const woffuActions = (page: Page) => {
     },
     close: async () => {
       await frameLocator.locator('#diary-edit >> text=×').click();
-      await page.close();
+      // await page.close();
     }
   });
 };
@@ -66,7 +66,8 @@ export const fillHours = async (page: Page) => {
     getModifyButton,
     countTotalDaysToFill,
     fillHours,
-    hasErrorFillingFutureDays
+    close,
+    hasErrorFillingFutureDays,
   } = woffuActions(page);
 
   let canFillCurrentDay = true;
@@ -76,11 +77,12 @@ export const fillHours = async (page: Page) => {
     if (dayToFill) {
       dayToFill.click();
 
-      const modifyButton = await getModifyButton();
-      await fillHours(modifyButton);
-      // canFillCurrentDay = await hasErrorFillingFutureDays();
-    }
-
-    totalDaysToFill = await countTotalDaysToFill(page);
+    const modifyButton = await getModifyButton();
+    await fillHours(modifyButton);
+    canFillCurrentDay = await hasErrorFillingFutureDays();
   }
+
+  totalDaysToFill = await countTotalDaysToFill(page);
+  }
+  await close();
 };
