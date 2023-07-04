@@ -45,8 +45,10 @@ const woffuActions = (page: Page) => {
       return totalWarnings > 1;
     },
     close: async () => {
-      await frameLocator.locator('#diary-edit >> text=×').click();
-      // await page.close();
+      const modalOnScreen = await frameLocator.locator('.modal-open #diary-edit.sticky .modal-dialog .modal-header button').count();
+      if (modalOnScreen) {
+        await frameLocator.locator('.modal-open #diary-edit.sticky .modal-dialog .modal-header button').click();
+      }
     }
   });
 };
@@ -67,24 +69,29 @@ export const fillHours = async (page: Page) => {
     countTotalDaysToFill,
     fillHours,
     close,
-    hasErrorFillingFutureDays,
+    hasErrorFillingFutureDays
   } = woffuActions(page);
 
   let canFillCurrentDay = true;
   let totalDaysToFill = await countTotalDaysToFill(page);
-  console.log('daysToFill', totalDaysToFill);
   while (totalDaysToFill > 1 && canFillCurrentDay) {
     const dayToFill = await getDayToFill();
     if (dayToFill) {
       dayToFill.click();
 
-    const modifyButton = await getModifyButton();
-    await fillHours(modifyButton);
-    canFillCurrentDay = !Boolean(await hasErrorFillingFutureDays());
-  }
+      const modifyButton = await getModifyButton();
+      await fillHours(modifyButton);
+      canFillCurrentDay = !Boolean(await hasErrorFillingFutureDays());
+      // if(canFillCurrentDay) {
+      await close();
+      // }
+    }
 
-  totalDaysToFill = await countTotalDaysToFill(page);
+    if (totalDaysToFill === await countTotalDaysToFill(page)) {
+      totalDaysToFill = 0;
+    } else {
+      totalDaysToFill = await countTotalDaysToFill(page);
+    }
     console.log('while conditions', totalDaysToFill, canFillCurrentDay);
   }
-  // await close();
 };

@@ -17,7 +17,7 @@ create_env_file() {
   echo "EMAIL=$EMAIL" >> "$filename"
   echo "PASSWORD=$PASSWORD" >> "$filename"
   echo "HAS_GOOGLE_LOGIN=false" >> "$filename"
-  echo "TOTAL_MONTH=1" >> "$filename"
+  echo "TOTAL_MONTH=2" >> "$filename"
   echo "WOFFU_URL=https://nologis.woffu.com" >> "$filename"
 
   echo "Se ha creado el archivo $filename con éxito."
