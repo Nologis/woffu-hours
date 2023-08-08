@@ -17,7 +17,7 @@ const woffuActions = (page: Page) => {
     getDayToFill: async () => await frameLocator.locator('.ng-binding.ng-scope.text-danger').first(),
     countTotalDaysToFill: async page => {
       await page.waitForTimeout(5000);
-      return await frameLocator.getByText('-8h').count();
+      return await frameLocator.locator('.ng-binding.ng-scope.text-danger').getByText('-8h').count();
     },
     getModifyButton: async (): Promise<Locator | undefined> => {
       const modifyButton = await frameLocator.getByText('Modificar');
