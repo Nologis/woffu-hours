@@ -74,7 +74,7 @@ export const fillHours = async (page: Page) => {
 
   let canFillCurrentDay = true;
   let totalDaysToFill = await countTotalDaysToFill(page);
-  while (totalDaysToFill > 1 && canFillCurrentDay) {
+  while (totalDaysToFill >= 1 && canFillCurrentDay) {
     const dayToFill = await getDayToFill();
     if (dayToFill) {
       dayToFill.click();
