@@ -11,7 +11,7 @@ export const exists = async (locator: Locator): Promise<boolean> => {
 };
 
 const woffuActions = (page: Page) => {
-  const frameLocator = page.frameLocator('#woffu-legacy-app');
+  const frameLocator = page.frameLocator('#woffu-legacy-calendar');
   return ({
     goToReport: async () => await page.goto(`${process.env.WOFFU_URL}/v2/personal/diary/user`),
     getDayToFill: async () => await frameLocator.locator('.ng-binding.ng-scope.text-danger').first(),

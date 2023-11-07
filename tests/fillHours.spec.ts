@@ -57,12 +57,12 @@ test('fill hours of previous month in Woffu', async ({ page }) => {
 
     const totalMonth: number = parseInt(process.env.TOTAL_MONTH);
     for (let index = 1; index < totalMonth; index++) {
-        await page.frameLocator('#woffu-legacy-app').locator('text=< mes anterior').click();
+        await page.frameLocator('#woffu-legacy-calendar').locator('text=< mes anterior').click();
     }
 
     for (let index = 1; index <= totalMonth; index++) {
         console.info(`Filling hours. (${index}/${totalMonth})`);
         await fillHours(page);
-        await page.frameLocator('#woffu-legacy-app').locator('text=mes siguiente >').click();
+        await page.frameLocator('#woffu-legacy-calendar').locator('text=mes siguiente >').click();
     }
 });
